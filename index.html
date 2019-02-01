@@ -8,37 +8,42 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   </head>
   <body>
-    <h1>ZeGermanMeme</h1>
-    <p>
-      <ol>
-        <li>Choose template</li>
-        <li>Add texts</li>
-        <li>???</li>
-        <li>Profit! (Save image as...)</li>
-      </ol>
-    </p>
-    <label for="template">Template</label>
-    <select id="template">
-      <option value="gesichtspalme">Gesichtspalme</option>
-      <option value="david_und_die_gesichtspalme"
-        >David und die Gesichtspalme</option
-      >
-    </select>
+    <div class="ze-wrapper">
+      <div class="ze-content-box">
+        <h1>ZeGermanMeme</h1>
+        <p>
+          <ol>
+            <li>Choose template</li>
+            <li>Add texts</li>
+            <li>???</li>
+            <li>Profit! (Save image as...)</li>
+          </ol>
+        </p>
+        <label for="template">Template</label>
+        <select id="template">
+          <option value="gesichtspalme">Gesichtspalme</option>
+          <option value="david_und_die_gesichtspalme"
+            >David und die Gesichtspalme</option
+          >
+        </select>
+      </div>
+      <div class="ze-content-box">
+        <div id="inputs" class="ze-inputs"></div>
+        <div class="ze-canvas-wrap">
+          <canvas id="myLittleCanvas" class="ze-canvas"></canvas>
+        </div>
+      </div>
 
-    <hr />
-    <div id="inputs"></div>
-    <canvas id="myLittleCanvas"></canvas>
-
-    <script src="main.js"></script>
-    <hr />
-    <footer>
-      <ul>
-        <li>A shitty service provided by <a href="https://twitter.com/rmehner">@rmehner</a></li>
-        <li><a href="https://github.com/rmehner/ZeGermanMeme">Code</a></li>
-        <li><a href="https://github.com/rmehner/ZeGermanMeme/issues">Bugs</a></li>
-        <li>Special thanks to <a href="https://twitter.com/ZeGermanGuy">@ZeGermanGuy</a>, <a href="https://www.hookedmagazin.de/">Hooked</a> &amp; <a href="https://twitter.com/behaind">David Hain</a></li>
-      </ul>
-    </footer>
-
+      <script src="main.js"></script>
+      <hr />
+      <footer>
+        <ul>
+          <li>A shitty service provided by <a href="https://twitter.com/rmehner">@rmehner</a></li>
+          <li><a href="https://github.com/rmehner/ZeGermanMeme">Code</a></li>
+          <li><a href="https://github.com/rmehner/ZeGermanMeme/issues">Bugs</a></li>
+          <li>Special thanks to <a href="https://twitter.com/ZeGermanGuy">@ZeGermanGuy</a>, <a href="https://www.hookedmagazin.de/">Hooked</a> &amp; <a href="https://twitter.com/behaind">David Hain</a></li>
+        </ul>
+      </footer>
+    </div>
   </body>
 </html>
