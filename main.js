@@ -11,13 +11,19 @@ const canvasState = {
 const templates = {
   gesichtspalme: {
     src: 'images/gesichtspalme.jpg',
-    inputs: [{ placeholder: '¯\\_(ツ)_/¯', position: { x: 75, y: 300 } }],
+    inputs: [
+      {
+        placeholder: '¯\\_(ツ)_/¯',
+        position: { x: 150, y: 250 },
+        maxWidth: 200,
+      },
+    ],
   },
   david_und_die_gesichtspalme: {
     src: 'images/david_und_die_gesichtspalme.jpg',
     inputs: [
-      { placeholder: 'David', position: { x: 75, y: 300 } },
-      { placeholder: 'Leo', position: { x: 450, y: 400 } },
+      { placeholder: 'David', position: { x: 150, y: 350 }, maxWidth: 200 },
+      { placeholder: 'Leo', position: { x: 500, y: 400 }, maxWidth: 150 },
     ],
   },
 }
@@ -27,9 +33,21 @@ const drawStateOnCanvas = state => {
   context.drawImage(state.image, 0, 0)
 
   state.texts.forEach(text => {
-    context.font = text.font || '48px serif'
+    context.font = '48px serif'
     context.fillStyle = '#FFFFFF'
-    context.fillText(text.value, text.x, text.y)
+    context.textBaseline = 'middle'
+    context.textAlign = 'center'
+    context.shadowOffsetX = 3
+    context.shadowOffsetY = 3
+    context.shadowColor = 'rgba(0,0,0,0.3)'
+    context.shadowBlur = 4
+
+    text.value
+      .split('\n')
+      .reverse()
+      .forEach((line, i) => {
+        context.fillText(line, text.x, text.y - i * 48, text.maxWidth)
+      })
   })
 }
 
@@ -44,7 +62,7 @@ const loadTemplate = templateName => {
     canvasState.texts = []
 
     template.inputs.forEach((input, index) => {
-      const tag = document.createElement('input')
+      const tag = document.createElement('textarea')
       tag.placeholder = input.placeholder
       // TODO: remove event listeners to not leak memory
       tag.addEventListener('input', e => {
@@ -52,6 +70,7 @@ const loadTemplate = templateName => {
           value: e.target.value,
           x: input.position.x,
           y: input.position.y,
+          maxWidth: input.maxWidth,
         }
         drawStateOnCanvas(canvasState)
       })
@@ -63,7 +82,7 @@ const loadTemplate = templateName => {
 }
 
 select.addEventListener('change', e => {
-  inputs.querySelectorAll('input').forEach(input => {
+  inputs.querySelectorAll('textarea').forEach(input => {
     inputs.removeChild(input)
   })
   loadTemplate(e.target.value)
