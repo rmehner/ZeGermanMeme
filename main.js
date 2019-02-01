@@ -33,20 +33,19 @@ const drawStateOnCanvas = state => {
   context.drawImage(state.image, 0, 0)
 
   state.texts.forEach(text => {
-    context.font = '48px sans-serif'
+    context.font = 'bold 48px sans-serif'
     context.fillStyle = '#FFFFFF'
+    context.strokeStyle = '#000000'
+    context.lineWidth = 3
     context.textBaseline = 'middle'
     context.textAlign = 'center'
-    context.shadowOffsetX = 3
-    context.shadowOffsetY = 3
-    context.shadowColor = 'rgba(0,0,0,0.3)'
-    context.shadowBlur = 4
 
     text.value
       .split('\n')
       .reverse()
       .forEach((line, i) => {
         context.fillText(line, text.x, text.y - i * 48, text.maxWidth)
+        context.strokeText(line, text.x, text.y - i * 48, text.maxWidth)
       })
   })
 }
