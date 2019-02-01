@@ -46,6 +46,7 @@ const setIdealFontSizeForText = (text, maxWidth) => {
   while (context.measureText(text).width > maxWidth) {
     if (idealFontSize <= 0) {
       resetFontSize()
+      resetLineWidth()
       return
     }
     idealFontSize--
