@@ -33,7 +33,7 @@ const drawStateOnCanvas = state => {
   context.drawImage(state.image, 0, 0)
 
   state.texts.forEach(text => {
-    context.font = '48px serif'
+    context.font = '48px sans-serif'
     context.fillStyle = '#FFFFFF'
     context.textBaseline = 'middle'
     context.textAlign = 'center'
