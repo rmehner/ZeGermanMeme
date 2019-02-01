@@ -28,6 +28,33 @@ const templates = {
   },
 }
 
+const defaultFontSize = 48
+const defaultLineWidth = 3
+
+const resetFontSize = () => {
+  context.font = `bold ${defaultFontSize}px sans-serif`
+}
+
+const resetLineWidth = () => {
+  context.lineWidth = defaultLineWidth
+}
+
+const setIdealFontSizeForText = (text, maxWidth) => {
+  let idealFontSize = defaultFontSize
+  let idealLineWidth = defaultLineWidth
+
+  while (context.measureText(text).width > maxWidth) {
+    if (idealFontSize <= 0) {
+      resetFontSize()
+      return
+    }
+    idealFontSize--
+    idealLineWidth = idealLineWidth - 0.05
+    context.font = `bold ${idealFontSize}px sans-serif`
+    context.lineWidth = idealLineWidth
+  }
+}
+
 const drawStateOnCanvas = state => {
   context.clearRect(0, 0, canvas.width, canvas.height)
   context.drawImage(state.image, 0, 0)
@@ -44,8 +71,11 @@ const drawStateOnCanvas = state => {
       .split('\n')
       .reverse()
       .forEach((line, i) => {
-        context.fillText(line, text.x, text.y - i * 48, text.maxWidth)
-        context.strokeText(line, text.x, text.y - i * 48, text.maxWidth)
+        resetLineWidth()
+        resetFontSize()
+        setIdealFontSizeForText(line, text.maxWidth)
+        context.fillText(line, text.x, text.y - i * 48)
+        context.strokeText(line, text.x, text.y - i * 48)
       })
   })
 }
