@@ -42,7 +42,7 @@ body {
   margin: 1rem 0;
   padding: 0.4rem 0.8rem;
   border-radius: 3px;
-  max-width: 15rem;
+  max-width: 100%;
 }
 
 h1 {
@@ -111,6 +111,7 @@ footer {
   }
 
   .ze-inputs textarea {
+    max-width: 15rem;
     margin: 0 0.4rem;
   }
 
